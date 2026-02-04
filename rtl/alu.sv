@@ -21,37 +21,37 @@
 
 
 module alu (
-   input  logic [31:0]  a_i
-  ,input  logic [31:0]  b_i
-  ,input  logic  [4:0]  alu_op_i
-  
-  ,output logic         flag_o
-  ,output logic [31:0]  result_o
+     input  logic [31:0]  a_i
+    ,input  logic [31:0]  b_i
+    ,input  logic  [4:0]  alu_op_i
+      
+    ,output logic         flag_o
+    ,output logic [31:0]  result_o
 );
   
-  import alu_opcodes_pkg::*;
-  
-  
-  logic [31:0] sum_result;
-  logic [31:0] sub_result;
-  
-  rca_adder32bit sum32(
-      .a_i(a_i),
-      .b_i(b_i),
-      .carry_i(1'b0),
-      .carry_o(),
-      .sum_o(sum_result)
+    import alu_opcodes_pkg::*;
+      
+      
+    logic [31:0] sum_result;
+    logic [31:0] sub_result;
+      
+    rca_adder32bit sum32(
+        .a_i(a_i),
+        .b_i(b_i),
+        .carry_i(1'b0),
+        .carry_o(),
+        .sum_o(sum_result)
     );
-  
-  rca_adder32bit sub32(
-      .a_i(a_i),
-      .b_i(~b_i),
-      .carry_i(1'b0),
-      .carry_o(),
-      .sum_o(sub_result)
+      
+    rca_adder32bit sub32(
+        .a_i(a_i),
+        .b_i(~b_i),
+        .carry_i(1'b0),
+        .carry_o(),
+        .sum_o(sub_result)
     );
-  
-  
+
+
     always_comb begin  
         case (alu_op_i)
             ALU_ADD: result_o = sum_result;

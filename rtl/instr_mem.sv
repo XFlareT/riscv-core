@@ -30,12 +30,12 @@ module instr_mem(
     //Create a memory with <INSTR_MEM_SIZE_WORDS> 32 bits cells
     logic [31:0] ROM [INSTR_MEM_SIZE_WORDS];
     
-    //place content into ROM memory
+    //Place content into ROM memory
     initial begin
         $readmemh("program.mem", ROM);
     end    
     
-    // Implementation asynchronic port for reading
+    //Implementation asynchronic port for reading
     assign read_data_o = ROM[read_addr_i[$clog2(INSTR_MEM_SIZE_WORDS)-1:2]];
 
 endmodule 
