@@ -36,7 +36,7 @@ module decoder (
   ,output logic         branch_o
   ,output logic         jal_o
   ,output logic         jalr_o
-  ,output logic         mret_
+  ,output logic         mret_o
 );
     import decoder_pkg::*;
 
